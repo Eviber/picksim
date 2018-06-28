@@ -1,6 +1,7 @@
 *.o
 *.a
 *.swp
-picksim
+tags
 a.out
 test.c
+picksim
