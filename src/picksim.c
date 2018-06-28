@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 21:57:31 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/28 21:58:37 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/06/28 22:55:51 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	debugui(t_gamenv genv)
 	wenv = getsdlenv();
 	rect = (SDL_Rect){.x = 50, .y = 50};
 	SDL_SetRenderTarget(wenv->render, wenv->wintex.t);
-	SDL_RenderClear(wenv->render);
 	sprintf(str, "Pick:");
 	tex = strtotex(str, (SDL_Color){255, 255, 255, 255}, 0);
 	SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
@@ -140,6 +139,7 @@ int		main(void)
 	while (!quitvisu())
 	{
 		events(&genv.pick);
+		visualize(genv);
 		debugui(genv);
 		visu_update();
 	}

@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 21:06:09 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/28 22:02:03 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/06/29 00:49:53 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void		events(t_pick *pick)
 			pick->depth = (pick->depth > 0) ? 100 : 0;
 	}
 	pick->angle -= m.x;
-	if (pick->angle > 100 || pick->angle < 0)
-		pick->angle = (pick->angle > 0) ? 100 : 0;
+	if (pick->angle > 1000 || pick->angle < 0)
+		pick->angle = (pick->angle > 0) ? 1000 : 0;
 }

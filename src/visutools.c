@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 09:03:43 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/28 20:56:19 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/06/28 22:58:26 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ void				visu_update(void)
 	SDL_SetRenderTarget(env->render, NULL);
 	SDL_RenderCopy(env->render, env->wintex.t, NULL, NULL);
 	SDL_RenderPresent(env->render);
+	SDL_SetRenderDrawColor(env->render, 0, 0, 0, 255);
+	SDL_RenderClear(env->render);
+	SDL_SetRenderTarget(env->render, env->wintex.t);
 	SDL_RenderClear(env->render);
 }
 
