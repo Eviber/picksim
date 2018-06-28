@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 08:36:55 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/28 08:30:47 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/06/28 21:48:42 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void			initsdl(t_winenv *env, const char *name, Uint32 flags)
 	if (!env->render)
 		panic("Error while creating renderer", SDL_GetError());
 	if (TTF_Init() == -1 ||
-		!(env->font[0] = TTF_OpenFont("roboto.ttf", 20)) ||
-		!(env->font[1] = TTF_OpenFont("impact.ttf", 200)))
+		!(env->font[0] = TTF_OpenFont("resources/roboto.ttf", 20)) ||
+		!(env->font[1] = TTF_OpenFont("resources/impact.ttf", 200)))
 		panic("Error while initializing SDL_TTF", TTF_GetError());
 	SDL_SetRenderDrawColor(env->render, 9, 11, 16, SDL_ALPHA_OPAQUE);
 	SDL_RenderClear(env->render);
@@ -48,5 +48,6 @@ void				visu_init(void)
 	dm = env->dispmode;
 	env->wintex.t = getnewtex(TEXTARGET, dm.w, dm.h);
 	cleartex(env->wintex.t, (SDL_Color){10, 10, 10, SDL_ALPHA_OPAQUE});
-	visu_update(env);
+	SDL_SetRelativeMouseMode(SDL_TRUE);
+	visu_update();
 }

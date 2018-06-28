@@ -6,9 +6,12 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 05:30:06 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/28 10:34:14 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/06/28 21:42:51 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PICKSIM_H
+# define PICKSIM_H
 
 typedef enum	e_type
 {
@@ -49,3 +52,5 @@ typedef struct	s_gamenv
 	t_lock		lock;
 	t_pick		pick;
 }				t_gamenv;
+
+#endif

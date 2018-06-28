@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 20:22:21 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/28 08:32:09 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/06/28 21:42:12 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <SDL.h>
 # include <SDL_ttf.h>
+
+# include "picksim.h"
 
 # define TEXTARGET SDL_TEXTUREACCESS_TARGET
 
@@ -49,7 +51,8 @@ void					setcolor(SDL_Color color, unsigned char alpha);
 /*
 **	Specific tools
 */
-void					visu_update(t_winenv *env);
+void					visu_update(void);
+void					events(t_pick *pick);
 
 /*
 **	Subfunctions
@@ -61,6 +64,6 @@ void					visu_update(t_winenv *env);
 void					visu_init(void);
 void					visu_finish(void);
 int						visu(void);
-int						quitvisu(t_winenv *env);
+int						quitvisu(void);
 
 #endif

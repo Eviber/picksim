@@ -6,7 +6,7 @@
 #    By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/28 07:38:34 by ygaude            #+#    #+#              #
-#    Updated: 2018/06/28 08:07:04 by ygaude           ###   ########.fr        #
+#    Updated: 2018/06/28 21:40:26 by ygaude           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC =			gcc -Wall -Wextra
 CFLAGS =		-I include/ -I libft/include/ `sdl2-config --cflags`
 LFLAGS =		-L $(PATH_LIBFT) -lft `sdl2-config --libs` -lSDL2_ttf
 
-SRC =			picksim.c sdltools.c visu_init.c visutools.c
+SRC =			events.c picksim.c sdltools.c visu_init.c visutools.c
 
 OBJ =			$(patsubst %.c, $(PATH_OBJ)%.o, $(SRC))
 
