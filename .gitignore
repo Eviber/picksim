@@ -1,0 +1,5 @@
+*.o
+*.a
+picksim
+a.out
+test.c
