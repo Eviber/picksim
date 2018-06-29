@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 05:30:06 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/28 21:42:51 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/06/29 07:54:12 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_pick
 	int			depth;
 	int			angle;
 	int			push;
+	int			holding;
 }				t_pick;
 
 typedef struct	s_gamenv
