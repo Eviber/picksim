@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 05:30:06 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/29 07:54:12 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/06/29 10:37:39 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct	s_pin
 typedef struct	s_lock
 {
 	t_pin		pins[8];
+	int			prio[8];
+	int			solved;
 	int			size;
 }				t_lock;
 

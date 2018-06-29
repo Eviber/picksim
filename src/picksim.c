@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 21:57:31 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/28 22:55:51 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/06/29 10:42:57 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,31 @@ t_pin	pingen(t_pin *pins, int index)
 	return (pins[index]);
 }
 
+void	setprio(t_lock *lock, int size)
+{
+	int		i;
+	int		j;
+	int		next;
+	int		min;
+
+	i = 0;
+	min = 0;
+	while (i < size)
+	{
+		j = 0;
+		next = -1;
+		while (j < size)
+		{
+			if ((next == -1 || lock->pins[next].pos > lock->pins[j].pos) && lock->pins[j].pos > min)
+				next = j;
+			j++;
+		}
+		lock->prio[i] = next;
+		min = lock->pins[next].pos;
+		i++;
+	}
+}
+
 t_lock	lockgen(int size, int secured)
 {
 	t_lock	lock;
@@ -59,6 +84,7 @@ t_lock	lockgen(int size, int secured)
 			;
 		lock.pins[j].type = SERRATED;
 	}
+	setprio(&lock, size);
 	return (lock);
 }
 
@@ -68,8 +94,13 @@ void	debuglock(t_lock lock)
 	char	**status;
 	int		i;
 
-	i = 0;
 	status = (char *[6]){(char *)"FREE", (char *)"SOLVED", (char *)"FAKE"};
+	printf("Prio :");
+	i = 0;
+	while (i < lock.size)
+		printf(" %d", lock.prio[i++]);
+	printf("\n");
+	i = 0;
 	while (i < lock.size)
 	{
 		pin = lock.pins[i];
@@ -132,8 +163,8 @@ int		main(void)
 	t_gamenv	genv;
 
 	srand(time(NULL));
-	genv.lock = lockgen(3, 0);
-	genv.pick = (t_pick){0, 0, 0};
+	genv.lock = lockgen(4, 0);
+	genv.pick = (t_pick){0, 0, 0, 0};
 	visu_init();
 	debugenv(genv);
 	while (!quitvisu())
