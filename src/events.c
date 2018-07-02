@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 21:06:09 by ygaude            #+#    #+#             */
-/*   Updated: 2018/07/02 18:25:51 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/07/02 19:02:50 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,21 @@ void		movelock(t_gamenv *genv)
 		genv->lock.angle = genv->lock.pins[genv->lock.prio[i]].pos;
 	else
 		genv->lock.angle = genv->pick.angle;
+}
+
+void		movepins(t_gamenv *genv)
+{
+	int		i;
+
+	i = 0;
+	while (i < genv->lock.size)
+	{
+		if (genv->lock.pins[i].pos > genv->pick.angle && genv->lock.pins[i].status == SOLVED)
+			genv->lock.pins[i].status = FREE;
+		else if (genv->lock.pins[i].pos < genv->pick.angle && genv->pick.push == 100)
+			genv->lock.pins[i].status = SOLVED;
+		i++;
+	}
 }
 
 void		mouse(t_pick *pick)
@@ -58,5 +73,6 @@ void		events(t_gamenv *genv)
 	keys = SDL_GetKeyboardState(NULL);
 	genv->pick.holding = keys[SDL_SCANCODE_SPACE];
 	mouse(&genv->pick);
+	movepins(genv);
 	movelock(genv);
 }
