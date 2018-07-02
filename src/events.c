@@ -6,12 +6,25 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 21:06:09 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/29 08:13:40 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/07/02 18:25:51 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <SDL.h>
 #include "picksim.h"
+
+void		movelock(t_gamenv *genv)
+{
+	int		i;
+
+	i = 0;
+	while (i < genv->lock.size && genv->lock.pins[genv->lock.prio[i]].status == SOLVED)
+		i++;
+	if (i < genv->lock.size && genv->lock.pins[genv->lock.prio[i]].pos < genv->pick.angle)
+		genv->lock.angle = genv->lock.pins[genv->lock.prio[i]].pos;
+	else
+		genv->lock.angle = genv->pick.angle;
+}
 
 void		mouse(t_pick *pick)
 {
@@ -38,11 +51,12 @@ void		mouse(t_pick *pick)
 	}
 }
 
-void		events(t_pick *pick)
+void		events(t_gamenv *genv)
 {
 	Uint8	*keys;
 
 	keys = SDL_GetKeyboardState(NULL);
-	pick->holding = keys[SDL_SCANCODE_SPACE];
-	mouse(pick);
+	genv->pick.holding = keys[SDL_SCANCODE_SPACE];
+	mouse(&genv->pick);
+	movelock(genv);
 }

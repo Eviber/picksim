@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 20:22:21 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/28 22:42:20 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/07/02 18:14:50 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void					setcolor(SDL_Color color, unsigned char alpha);
 **	Specific tools
 */
 void					visu_update(void);
-void					events(t_pick *pick);
+void					events(t_gamenv *genv);
 void					visualize(t_gamenv genv);
 
 /*

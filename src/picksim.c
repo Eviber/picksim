@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 21:57:31 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/29 10:42:57 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/07/02 18:13:51 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ int		main(void)
 	debugenv(genv);
 	while (!quitvisu())
 	{
-		events(&genv.pick);
+		events(&genv);
 		visualize(genv);
 		debugui(genv);
 		visu_update();

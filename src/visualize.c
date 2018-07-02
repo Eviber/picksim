@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 22:15:40 by ygaude            #+#    #+#             */
-/*   Updated: 2018/06/29 07:42:24 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/07/02 18:23:42 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ void	visualize(t_gamenv genv)
 	SDL_SetRenderDrawColor(wenv->render, 100, 100, 100, 255);
 	SDL_RenderFillRect(wenv->render, &rect);
 	SDL_SetRenderDrawColor(wenv->render, 0, 0, 0, 255);
-	if (genv.pick.angle < 1000)
-		filledPieRGBA(wenv->render, 1000, 800, 100, 90, 90 + genv.pick.angle * 360 / 1000, 100, 110, 120, 255);
+	if (genv.lock.angle < 1000)
+	{
+		filledPieRGBA(wenv->render, 1000, 800, 100, 90, 90 + genv.pick.angle * 360 / 1001, 200, 110, 120, 255);
+		filledPieRGBA(wenv->render, 1000, 800, 100, 90, 90 + genv.lock.angle * 360 / 1000, 100, 110, 120, 255);
+	}
 	else
 		filledCircleRGBA(wenv->render, 1000, 800, 100, 100, 200, 120, 255);
 }
