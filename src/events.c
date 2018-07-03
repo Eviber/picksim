@@ -6,7 +6,7 @@
 /*   By: ygaude <ygaude@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/28 21:06:09 by ygaude            #+#    #+#             */
-/*   Updated: 2018/07/02 19:02:50 by ygaude           ###   ########.fr       */
+/*   Updated: 2018/07/03 21:41:23 by ygaude           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void		movelock(t_gamenv *genv)
 		i++;
 	if (i < genv->lock.size && genv->lock.pins[genv->lock.prio[i]].pos < genv->pick.angle)
 		genv->lock.angle = genv->lock.pins[genv->lock.prio[i]].pos;
-	else
+	else if (genv->pick.angle < 1000)
 		genv->lock.angle = genv->pick.angle;
+	else
+		genv->lock.angle = 1000;
 }
 
 void		movepins(t_gamenv *genv)
@@ -35,13 +37,13 @@ void		movepins(t_gamenv *genv)
 	{
 		if (genv->lock.pins[i].pos > genv->pick.angle && genv->lock.pins[i].status == SOLVED)
 			genv->lock.pins[i].status = FREE;
-		else if (genv->lock.pins[i].pos < genv->pick.angle && genv->pick.push == 100)
+		else if (genv->lock.angle == genv->lock.pins[i].pos && genv->lock.pins[i].pos + 25 > genv->pick.angle && genv->pick.push == genv->lock.pins[i].val)
 			genv->lock.pins[i].status = SOLVED;
 		i++;
 	}
 }
 
-void		mouse(t_pick *pick)
+void		pick(t_lock lock, t_pick *pick)
 {
 	SDL_Point	m;
 
@@ -61,8 +63,8 @@ void		mouse(t_pick *pick)
 	if (!pick->holding)
 	{
 		pick->angle -= m.x;
-		if (pick->angle > 1000 || pick->angle < 0)
-			pick->angle = (pick->angle > 0) ? 1000 : 0;
+		if (pick->angle > lock.angle + 100 || pick->angle < 0)
+			pick->angle = (pick->angle > 0) ? lock.angle + 100 : 0;
 	}
 }
 
@@ -72,7 +74,7 @@ void		events(t_gamenv *genv)
 
 	keys = SDL_GetKeyboardState(NULL);
 	genv->pick.holding = keys[SDL_SCANCODE_SPACE];
-	mouse(&genv->pick);
+	pick(genv->lock, &genv->pick);
 	movepins(genv);
 	movelock(genv);
 }
